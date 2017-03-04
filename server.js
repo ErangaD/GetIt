@@ -9,19 +9,9 @@ var passport = require('passport');
 var LocalStrategy  = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-var db;
-/*mongoose.connection.on("open", function(ref) {
-    console.log("Connected to mongo server!".green);
-});
-
-mongoose.connection.on("error", function(err) {
-    console.log("Could not connect to mongo server!".yellow);
-    console.log(err.message.red);
-});
-*/
 
 mongoose.connect('mongodb://localhost/GetIt');
-db = mongoose.connection
+var db = mongoose.connection
     .once('open',()=>console.log("Database connection established"))
     .on('error',(error)=>{
         console.warn('Warning',error);
@@ -75,6 +65,8 @@ app.use(function (req, res, next) {
 
 require("babel-core/register");
 app.set('views',__dirname+"/src/views");
+/*app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+app.set('view engine', 'handlebars');*/
 app.set('view engine','pug');
 require('./routes')(app);
 app.use(express.static('./src/public'));
