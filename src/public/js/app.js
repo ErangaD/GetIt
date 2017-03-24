@@ -11,9 +11,6 @@ class App extends React.Component{
                 <div className="row">
                     <Header/>
                 </div>
-                <div className="row">
-                    <Checker/>
-                </div>
                 <Router history={browserHistory}>
                     <Route path={"login"} component={Login}/>
                     <Route path={"signUp"} component={SignUp}/>
