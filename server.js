@@ -68,7 +68,7 @@ app.set('views',__dirname+"/src/views");
 /*app.engine('handlebars', exphbs({defaultLayout:'layout'}));
 app.set('view engine', 'handlebars');*/
 app.set('view engine','pug');
-require('./routes')(app);
+require('./routes')(app,passport);
 app.use(express.static('./src/public'));
 app.listen(process.env.PORT || 3000,function () {
     console.log("Server started on 3000");
