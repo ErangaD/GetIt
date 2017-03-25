@@ -12,7 +12,7 @@ export class Login extends React.Component{
                         </div>
                         <div style={{paddingTop: 30}} className="panel-body">
                             <div style={{display: 'none'}} id="login-alert" className="alert alert-danger col-sm-12" />
-                            <form id="loginform" className="form-horizontal" role="form">
+                            <form id="loginform" className="form-horizontal" role="form" method="post" action="/login">
                                 <div style={{marginBottom: 25}} className="input-group">
                                     <span className="input-group-addon"><i className="glyphicon glyphicon-user" /></span>
                                     <input id="login-username" type="text" className="form-control" name="username" defaultValue placeholder="username or email" />
@@ -31,7 +31,7 @@ export class Login extends React.Component{
                                 <div style={{marginTop: 10}} className="form-group">
                                     {/* Button */}
                                     <div className="col-sm-12 controls">
-                                        <a id="btn-login" href="#" className="btn btn-success">Login</a>
+                                        <button id="btn-signup" type="submit" className="btn btn-info"><i className="icon-hand-right" /> &nbsp; Login</button>
                                         <a id="btn-fblogin" href="#" className="btn btn-primary">Login with Facebook</a>
                                     </div>
                                 </div>

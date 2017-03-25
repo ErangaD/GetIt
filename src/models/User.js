@@ -1,5 +1,5 @@
 let mongoose = require("mongoose");
-let bycrypt = require("bcryptjs");
+let bcrypt = require("bcryptjs");
 
 mongoose.connect('mongodb://localhost/GetIt');
 
@@ -7,19 +7,19 @@ let db = mongoose.connection;
 
 let UserSchema= mongoose.Schema({
     username:{
-        type:string
+        type:String
     },
     password:{
-        type:string
+        type:String
     },
     email:{
-        type:string
+        type:String
     },
     name:{
-        type:string
+        type:String
     },
     telNo:{
-        type:string
+        type:String
     },
     userType:{
         type:Boolean,
@@ -27,10 +27,10 @@ let UserSchema= mongoose.Schema({
         default:false
     },
     address:{
-        number:{type:string},
-        streetAddress:{type:string},
-        ruralAddress:{type:string},
-        cityName:{type:string}
+        number:{type:String},
+        streetAddress:{type:String},
+        ruralAddress:{type:String},
+        cityName:{type:String}
     },
     saleTypes:[String]
 });
@@ -45,5 +45,20 @@ module.exports.createUser = function (newUser,callback) {
             newUser.password=hash;
             newUser.save(callback);
         });
+    });
+}
+module.exports.getUserByUsername=function (username,callback) {
+    console.log(username);
+    let query = {username:username};
+    User.findOne(query,callback);
+}
+module.exports.getUserById=function (id,callback) {
+    User.findById(id,callback);
+}
+module.exports.comparePassword=function (password,hash,callback) {
+    bcrypt.compare(password,hash,function (err,isMatch) {
+        if(err)throw err;
+        console.log(isMatch);
+        callback(null,isMatch);
     });
 }
